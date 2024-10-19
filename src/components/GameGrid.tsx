@@ -4,6 +4,10 @@ import GameCard from "./GameCard";
 
 const GameGrid = () => {
     const { games, setGames, error, setError } = useGames();
+    // console.log(games);
+    // console.log(games.map(game => console.log(game)));
+    
+    
     return (
         <>
             { error && <Text> {error}</Text>}

@@ -15,13 +15,9 @@ const GameCard = ({game}: Props) => {
     // game.parent_platforms.map(({platform}) => console.log(platform))
     // console.log(game.parent_platforms.map(p => p.platform ));
     // console.log(game.parent_platforms);
-    console.log(getCroppedImageUrl(game.background_image));
-    const {isLoading} = useGames();
-    const skeletons = [1, 2, 3, 4, 5];
-    console.log(isLoading);
     
     return (
-        <Card borderRadius={10} overflow="hidden">
+        <Card>
             <Image src={getCroppedImageUrl(game.background_image)}></Image>
             <CardBody>
                 <Heading fontSize="2xl">{game.name}</Heading>

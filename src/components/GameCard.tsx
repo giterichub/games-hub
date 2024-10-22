@@ -1,7 +1,8 @@
 import { Card, Image, CardBody, Heading, Text, HStack } from "@chakra-ui/react";
-import { Game } from "../hooks/useGames";
+import useGames, { Game } from "../hooks/useGames";
 import getCroppedImageUrl from "../services/image-url";
 import CriticScore from "./CricticScore";
+import GameCardSkeleton from "./GameCardSkeleton";
 import PlatformIconList from "./PlatformIconList";
 
 interface Props{
@@ -15,7 +16,9 @@ const GameCard = ({game}: Props) => {
     // console.log(game.parent_platforms.map(p => p.platform ));
     // console.log(game.parent_platforms);
     console.log(getCroppedImageUrl(game.background_image));
-    
+    const {isLoading} = useGames();
+    const skeletons = [1, 2, 3, 4, 5];
+    console.log(isLoading);
     
     return (
         <Card borderRadius={10} overflow="hidden">

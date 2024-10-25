@@ -1,10 +1,9 @@
 import useData from "./useData";
-import { Platform } from "./useGames";
 
-interface Props {
+export interface Platform {
     id: number;
     name: string;
     slug: string;
 }
-const usePlatform = () => useData<Props>('/platforms/lists/parents');
+const usePlatform = () => useData<Platform>('/platforms/lists/parents');
 export default usePlatform;

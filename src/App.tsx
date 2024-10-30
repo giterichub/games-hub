@@ -8,6 +8,7 @@ import PlatformSelector from './components/PlatformSelector';
 import { Platform } from './hooks/useGames';
 import SortSelector from './components/SortSelector';
 import GameHeading from './components/GameHeading';
+import theme from './theme';
 
 export interface GameQuery{
   genre: Genre | null;
@@ -28,6 +29,7 @@ function App() {
       base: '1fr',
       lg: '200px 1fr'
     }}
+    transition="background-color 200ms linear"
     >
       <GridItem area={'nav'}>
         <Navbar onSearch={(searchText) => setGameQuery({...gameQuery, searchText})} />

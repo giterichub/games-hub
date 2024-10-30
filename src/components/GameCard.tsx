@@ -18,7 +18,7 @@ const GameCard = ({game}: Props) => {
     // console.log(game.parent_platforms);
     
     return (
-        <Card>
+        <Card transition="background-color 800ms linear">
             <Image src={getCroppedImageUrl(game.background_image)}></Image>
             <CardBody>
                 {/* {game.parent_platforms.map(({platform}) => <Text>{platform.name}</Text> )} */}

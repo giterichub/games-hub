@@ -33,6 +33,41 @@ const GameGrid = ({ gameQuery }: Props) => {
 
     return (
         <>
+            <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 3, "2xl": 4 }} padding='10px' spacing={5}>
+            {isLoading
+        ? [...Array(8)].map((_, index) => (
+            <GameCardContainer key={index}>
+                <GameCardSkeleton />
+            </GameCardContainer>
+          ))
+        : allGames.map(game => (
+            <GameCardContainer key={game.id}>
+                <GameCard game={game} />
+            </GameCardContainer>
+          ))
+    }
+</SimpleGrid>
+
+            {/* {isLoading ? (
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 3, "2xl": 4 }} padding='10px' spacing={5}>
+        {[...Array(8)].map((_, index) => (
+            <GameCardContainer key={index}>
+                <div style={{ height: '200px', backgroundColor: '#202020' }}></div>
+                <GameCardSkeleton />
+            </GameCardContainer>
+        ))}
+    </SimpleGrid>
+) : (
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 3, "2xl": 4 }} padding='10px' spacing={5}>
+        {allGames.map(game => (
+            <GameCardContainer key={game.id}>
+                <GameCard game={game} />
+            </GameCardContainer>
+        ))}
+    </SimpleGrid>
+)} */}
+
+
             {/* <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 3, "2xl": 4 }} padding='10px' spacing={5}>
                 {isLoading && skeletons.map(skeleton => (
                     <GameCardContainer key={skeleton}>
@@ -45,14 +80,24 @@ const GameGrid = ({ gameQuery }: Props) => {
                     </GameCardContainer>
                 ))}
             </SimpleGrid> */}
-            <ul className="game-grid-container">
+
+
+            {/* <ul className="game-grid-container">
+                {isLoading && skeletons.map(skeleton => (
+                    <li className="game-grid-items">
+                        <GameCardContainer key={skeleton}>
+                            <GameCardSkeleton />
+                        </GameCardContainer>
+                    </li>
+                ))}
                 {allGames.map(game => (
                     <li className="game-grid-items">
-                    <GameCardContainer key={game.id}>
-                        <GameCard game={game} />
-                    </GameCardContainer></li>
+                        <GameCardContainer key={game.id}>
+                            <GameCard game={game} />
+                        </GameCardContainer>
+                    </li>
                 ))}
-            </ul>
+            </ul> */}
             
             <LoadMoreButton loadMoreGames={loadMoreGames} isLoading={isLoading} />
         </>

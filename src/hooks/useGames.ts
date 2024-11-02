@@ -23,8 +23,8 @@ const useGames = (gameQuery: GameQuery, page: number) => useData<Game>('/games',
         parent_platforms: gameQuery.platform?.id,
         ordering: gameQuery.sorting,
         search: gameQuery.searchText,
-        page: page,
-        page_size: 10
+        page_size: 10,
+        page,
     }}, 
         [gameQuery, page]);
         

@@ -6,6 +6,7 @@ import GameCardContainer from "./GameCardContainer";
 import GameCard from "./GameCard";
 import LoadMoreButton from "./LoadMoreButton";
 import GameCardSkeleton from "./GameCardSkeleton";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 interface Props {
     gameQuery: GameQuery;
@@ -45,6 +46,7 @@ const GameGrid = ({ gameQuery }: Props) => {
             }
             </SimpleGrid>
             <LoadMoreButton loadMoreGames={loadMoreGames} isLoading={isLoading} />
+            <ScrollToTopButton />
         </>
     );
 };

@@ -1,4 +1,4 @@
-import { HStack, Switch, useColorMode, Text } from "@chakra-ui/react";
+import { HStack, Switch, useColorMode } from "@chakra-ui/react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import useSmoothTransition from "../hooks/useSmoothTransition";
 

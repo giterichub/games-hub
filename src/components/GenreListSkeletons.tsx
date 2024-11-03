@@ -1,4 +1,4 @@
-import { HStack, List, ListItem, Skeleton, SkeletonText, Text } from "@chakra-ui/react";
+import { HStack, List, ListItem, Skeleton, SkeletonText } from "@chakra-ui/react";
 
 const GenreListSkeletons = () => {
     return (
@@ -13,6 +13,3 @@ const GenreListSkeletons = () => {
     );
 }
 export default GenreListSkeletons;
-
-// const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-// {skeletons.map(skeleton => <GenreListSkeletons key={skeleton} />)}

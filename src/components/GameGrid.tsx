@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import { GameQuery } from "../App";
 import useGames, { Game } from "../hooks/useGames";
 import GameCardContainer from "./GameCardContainer";
@@ -14,7 +14,7 @@ interface Props {
 const GameGrid = ({ gameQuery }: Props) => {
     const [page, setPage] = useState(1);
     const { data, error, isLoading } = useGames(gameQuery, page);
-    const [allGames, setAllGames] = useState<Game[]>(data);
+    const [allGames, setAllGames] = useState<Game[]>([]);
             
     useEffect(() => {
         if (data.length > 0) {
@@ -24,81 +24,26 @@ const GameGrid = ({ gameQuery }: Props) => {
 
     const loadMoreGames = () => {
         setPage(prev => prev + 1); 
-        // setAllGames(data.slice(0, page + 10));
     };
 
     if (error) return <Text>{error}</Text>;
-
-    const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
     return (
         <>
             <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 3, "2xl": 4 }} padding='10px' spacing={5}>
             {isLoading
-        ? [...Array(8)].map((_, index) => (
+                ? [...Array(8)].map((_, index) => (
             <GameCardContainer key={index}>
                 <GameCardSkeleton />
             </GameCardContainer>
           ))
-        : allGames.map(game => (
+            : allGames.map(game => (
             <GameCardContainer key={game.id}>
                 <GameCard game={game} />
             </GameCardContainer>
           ))
-    }
-</SimpleGrid>
-
-            {/* {isLoading ? (
-    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 3, "2xl": 4 }} padding='10px' spacing={5}>
-        {[...Array(8)].map((_, index) => (
-            <GameCardContainer key={index}>
-                <div style={{ height: '200px', backgroundColor: '#202020' }}></div>
-                <GameCardSkeleton />
-            </GameCardContainer>
-        ))}
-    </SimpleGrid>
-) : (
-    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 3, "2xl": 4 }} padding='10px' spacing={5}>
-        {allGames.map(game => (
-            <GameCardContainer key={game.id}>
-                <GameCard game={game} />
-            </GameCardContainer>
-        ))}
-    </SimpleGrid>
-)} */}
-
-
-            {/* <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 3, "2xl": 4 }} padding='10px' spacing={5}>
-                {isLoading && skeletons.map(skeleton => (
-                    <GameCardContainer key={skeleton}>
-                        <GameCardSkeleton />
-                    </GameCardContainer>
-                ))}
-                {allGames.map(game => (
-                    <GameCardContainer key={game.id}>
-                        <GameCard game={game} />
-                    </GameCardContainer>
-                ))}
-            </SimpleGrid> */}
-
-
-            {/* <ul className="game-grid-container">
-                {isLoading && skeletons.map(skeleton => (
-                    <li className="game-grid-items">
-                        <GameCardContainer key={skeleton}>
-                            <GameCardSkeleton />
-                        </GameCardContainer>
-                    </li>
-                ))}
-                {allGames.map(game => (
-                    <li className="game-grid-items">
-                        <GameCardContainer key={game.id}>
-                            <GameCard game={game} />
-                        </GameCardContainer>
-                    </li>
-                ))}
-            </ul> */}
-            
+            }
+            </SimpleGrid>
             <LoadMoreButton loadMoreGames={loadMoreGames} isLoading={isLoading} />
         </>
     );

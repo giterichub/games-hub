@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import { GameQuery } from "../App";
 import useGames, { Game } from "../hooks/useGames";
@@ -16,10 +16,12 @@ const GameGrid = ({ gameQuery }: Props) => {
     const [page, setPage] = useState(1);
     const { data, error, isLoading } = useGames(gameQuery, page);
     const [allGames, setAllGames] = useState<Game[]>([]);
+    const initialLoadRef = useRef(true);
             
     useEffect(() => {
         if (data.length > 0) {
-            setAllGames(prev => [...prev, ...data]); 
+            setAllGames(prev => [...prev, ...data]);
+            initialLoadRef.current = false; 
         }
     }, [data]);
 
@@ -32,7 +34,7 @@ const GameGrid = ({ gameQuery }: Props) => {
     return (
         <>
             <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 3, "2xl": 4 }} padding='10px' spacing={5}>
-            {isLoading
+            {initialLoadRef.current
                 ? [...Array(8)].map((_, index) => (
             <GameCardContainer key={index}>
                 <GameCardSkeleton />

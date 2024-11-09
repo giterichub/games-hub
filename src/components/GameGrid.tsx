@@ -17,6 +17,19 @@ const GameGrid = ({ gameQuery }: Props) => {
     const { data, error, isLoading } = useGames(gameQuery, page);
     const [allGames, setAllGames] = useState<Game[]>([]);
     const initialLoadRef = useRef(true);
+
+    useEffect(() => {
+        if (
+            gameQuery.searchText ||
+            gameQuery.genre ||
+            gameQuery.platform ||
+            gameQuery.sorting
+        ) {
+            // Reset game list when any of the filters change
+            setAllGames([]);
+            setPage(1); // Start from the first page
+        }
+    }, [gameQuery]);
             
     useEffect(() => {
         if (data.length > 0) {
